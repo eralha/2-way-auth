@@ -1,0 +1,18 @@
+{
+  "name": "test-socket-io",
+  "version": "0.1.0",
+  "scripts": {
+    "postinstall": "grunt default"
+  },
+  "dependencies": {
+    "express": "*",
+    "grunt": "^0.4.5",
+    "grunt-cli": "0.1.13",
+    "grunt-contrib-uglify": "^0.6.0",
+    "socket.io": "~1.4.5",
+    "js-sha256" : "*"
+  },
+  "engines": {
+    "node": "0.12.2"
+  }
+}

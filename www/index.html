@@ -1,0 +1,112 @@
+<!doctype html>
+<!--[if IE 7]>    <html class="ie oldie ie7" lang="pt"> <![endif]-->
+<!--[if IE 8]>    <html class="ie oldie ie8" lang="pt"> <![endif]-->
+<!--[if IE]>      <html class="ie" lang="pt"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="pt"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Title for website</title>    
+
+  <meta name="author" content="Netmais Consultores # netmais@netmais.pt">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <script src="/js/socket.io.js"></script>
+  <script src="/js/sha256.js"></script>
+  <script src="/js/main.js"></script>
+
+
+   <!-- BOOTSTRAP -->
+	  	<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	  <!-- END BOOTSTRAP -->
+
+	<style type="text/css">
+		.c-chat-box {
+			width: 100%;
+			height: 200px;
+			padding-top: 10px;
+			border: 1px solid #ccc;
+    		border-radius: 4px;
+    		overflow: auto;
+		}
+		.c-msg {
+			clear: both;
+			float: left;
+			padding: 5px;
+			margin: 0 10px;
+			margin-bottom: 10px;
+			color: #fff;
+			background-color: #337ab7;
+		}
+		.c-msg--received {
+			float: right;
+			color: #000;
+			background-color: #ccc; 
+		}
+	</style>
+
+</head>
+<body>
+
+	<div class="container">
+
+		<div class="row" style="padding:30px;">
+
+
+			<div class="col-md-6">
+			  	<div class="form-group">
+				    <input type="text" class="form-control" id="serialDisplay" placeholder="Click generate serial, to get a serial key and use it as authenticator" readonly="true">
+				 </div>
+			  </div>
+			<div class="col-md-6">
+			  	<button type="button" class="btn btn-primary" id="generateSerial">Generate Serial</button>
+			  	<button type="button" class="btn btn-warning" id="saveSerial">Save this Serial</button>
+			  </div>
+
+
+			<div class="col-md-12">
+			  	<div class="form-group">
+				    <input type="text" class="form-control" id="authDisplay" readonly="true">
+				 </div>
+			  </div>
+
+
+
+		  <div class="col-md-6">
+		  	<div class="form-group">
+			    <input type="text" class="form-control" id="chatMessage" placeholder="Auth Code">
+			 </div>
+		  </div>
+		  <div class="col-md-6">
+		  	<button type="button" class="btn btn-primary" id="sendMessage">Send auth</button>
+		  	<button type="button" class="btn btn-warning" id="syncTime">Sync time with server</button>
+		  </div>
+
+		  <div class="col-md-12"></div>
+
+		  <div class="col-md-6">
+		  	<div class="form-group">
+			    <input type="text" class="form-control" id="serialKey" placeholder="Serial key to use in server">
+			 </div>
+		  </div>
+		  <div class="col-md-6">
+		  	<button type="button" class="btn btn-primary" id="sendSerial">Send serial</button>
+		  </div>
+
+
+		</div>
+
+	</div>
+
+  
+
+</body>
+</html>
