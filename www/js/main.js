@@ -43,7 +43,6 @@ function saveSerial(){
     //clear serial
     $('#serialDisplay').val('');
 
-    //this process must be generated previously and the resulting authkey stored in the client, deleting the original serial
     authKey = authSerialKey; //Hashing 1000 times the serial key.
     for(var i=0; i < 1000; i++){
         authKey = sha256(authKey);
