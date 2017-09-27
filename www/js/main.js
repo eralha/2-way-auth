@@ -95,7 +95,17 @@ function sendAuth(){
         contentType: 'json',
         processData: false
     }).done(function(data) {
-        console.log(data);
+        var res = JSON.parse(data);
+
+        $('#serverResponse').removeClass('alert-danger');
+        $('#serverResponse').removeClass('alert-success');
+        if(res.match == true){
+            $('#serverResponse').text('Authentication DONE!');
+            $('#serverResponse').addClass('alert-success');
+        }else{
+            $('#serverResponse').text('Authentication FAILED!');
+            $('#serverResponse').addClass('alert-danger');
+        }
     });
 }
 

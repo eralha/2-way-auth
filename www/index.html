@@ -61,25 +61,29 @@
 		<div class="row" style="padding:30px;">
 
 
-			<div class="col-md-6">
+			<div class="col-md-6" style="margin-bottom: 30px;">
+				<h4>Serial generation</h4>
+				<p>A serial must be generated, saved and sent to the server in orther to work.</p>
 			  	<div class="form-group">
 				    <input type="text" class="form-control" id="serialDisplay" placeholder="Click generate serial, to get a serial key and use it as authenticator" readonly="true">
 				 </div>
-			  </div>
-			<div class="col-md-6">
-			  	<button type="button" class="btn btn-primary" id="generateSerial">Generate Serial</button>
-			  	<button type="button" class="btn btn-warning" id="saveSerial">Save this Serial</button>
+				 <button type="button" class="btn btn-primary" id="generateSerial">Generate Serial</button>
+			  	 <button type="button" class="btn btn-warning" id="saveSerial">Save this Serial</button>
 			  </div>
 
 
 			<div class="col-md-12">
+				<h4>Each time step(30 seconds) a new code will be generated.</h4>
+				<p>Only the first 8 chars of the sha256 + timestep key, will be shown.</p>
 			  	<div class="form-group">
 				    <input type="text" class="form-control" id="authDisplay" readonly="true">
 				 </div>
 			  </div>
 
 
-
+		  <div class="col-md-12">
+		  	<h4>Insert here the OTP to be checked in the server.</h4>
+		  </div>
 		  <div class="col-md-6">
 		  	<div class="form-group">
 			    <input type="text" class="form-control" id="chatMessage" placeholder="Auth Code">
@@ -93,12 +97,15 @@
 		  <div class="col-md-12"></div>
 
 		  <div class="col-md-6">
+		  	<h4>Insert here a serial to be stored on the server.</h4>
 		  	<div class="form-group">
 			    <input type="text" class="form-control" id="serialKey" placeholder="Serial key to use in server">
 			 </div>
+			 <button type="button" class="btn btn-primary" id="sendSerial">Send serial</button>
 		  </div>
-		  <div class="col-md-6">
-		  	<button type="button" class="btn btn-primary" id="sendSerial">Send serial</button>
+
+		  <div class="col-md-12">
+		  	<div class="alert" id="serverResponse" role="alert"></div>
 		  </div>
 
 
