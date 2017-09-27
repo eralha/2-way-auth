@@ -53,7 +53,7 @@ function saveSerial(){
 
 function generateHash(){
     var time = Date.parse(new Date().toUTCString());
-        //set the time acording with server diference
+        //set the time according with server difference
         time = time + serverDif;
 
         time = Math.floor(time / 1000);
