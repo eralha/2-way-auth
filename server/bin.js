@@ -34,7 +34,7 @@ app.get('/check-auth/', function(request, response) {
 	}
 
 	var time = Date.parse(new Date().toUTCString());
-		time = time - (1000 * 60 * 60);//Simulate 1h difference
+		//time = time - (1000 * 60 * 60);//Simulate 1h difference
         time = Math.floor(time / 1000);
 
     var step = Math.floor(time / timeStep);
@@ -55,7 +55,7 @@ app.get('/check-auth/', function(request, response) {
 
 app.get('/sync-time/', function(request, response) {
 	var time = Date.parse(new Date().toUTCString());
-		time = time - (1000 * 60 * 60);//Simulate 1h difference
+		//time = time - (1000 * 60 * 60);//Simulate 1h difference
 
     response.send(JSON.stringify({time:time}));
 });
@@ -64,7 +64,6 @@ app.get('/send-serial/', function(request, response) {
 	saveSerial(String(request.query.code).toLowerCase());
 
 	console.log('KEY SAVED', authKey);
-
     response.send(JSON.stringify({serialSaved: true}));
 });
 
