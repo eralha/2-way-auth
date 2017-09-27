@@ -10,7 +10,7 @@
 
 <h1>Testing</h1>
 ```
-	node server/bin.js
+node server/bin.js
 ```
 <p>Open your browser with http://localhost:8080/</p>
 
