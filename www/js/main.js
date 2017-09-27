@@ -1,3 +1,12 @@
+var timeStep = 30;
+var serverTime = 0;
+var serverDif = 0;
+var prevStep = 0;
+
+var authSerialKey = '';
+var authKey = authSerialKey;
+
+
 function parseComponent(elem, scope){
     scope = scope || {};
     var htmlElement = elem;
@@ -29,13 +38,6 @@ function randomiseString(str){
 
     return str;
 }
-
-var timeStep = 30;
-var serverTime = 0;
-var serverDif = 0;
-
-var authSerialKey = '';
-var authKey = authSerialKey;
 
 function saveSerial(){
     authSerialKey = String($('#serialDisplay').val()).toLowerCase();
@@ -125,7 +127,6 @@ function sendSerial(){
     });
 }
 
-var prevStep = 0;
 function generateCode(){
     var time = new Date().getTime();
         time = Math.floor(time / 1000);

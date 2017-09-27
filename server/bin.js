@@ -17,6 +17,7 @@ function saveSerial(authSerialKey){
     delete authSerialKey;
 }
 
+
 app.server = server.createServer(app);
 var socket = require('./socket')(app.server);
 
