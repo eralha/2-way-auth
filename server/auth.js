@@ -34,6 +34,11 @@ function auth(config){
 	this.timeStep = 30 || config.timeStep;
 }
 
+/**
+ * Generate a secret key(sha256) base on string input
+ *
+ * @param {String} random generated key or user inputed password
+ */
 auth.prototype.generateToken = function(authSerialKey){
 	var authKey = authSerialKey || this.generateRandomSerial(); //Hashing 1000 times the serial key.
     for(var i=0; i < 1000; i++){
@@ -47,6 +52,13 @@ auth.prototype.generateRandomSerial = function(){
     return randomiseString('aa-aaaaaa-aaaa-aaa-a');
 }
 
+/**
+ * Verify if the user inserted token is valid
+ *
+ * @param {String} user inserted token
+ * @param {String} Ath key previously generated
+ * @param {Object} can change here the timestep and time window
+ */
 auth.prototype.verifyToken = function(token, authKey, config){
 	config = config || {};
 
