@@ -5,21 +5,15 @@ var server = require('http');
 var path = require('path');
 var sha256 = require('js-sha256');
 
-var timeStep = 30;
-var authSerialKey = 'xxx'; //This should be random generated with a strong random algortm.
-var authKey = authSerialKey; //Hashing 1000 times the serial key.
-
-function saveSerial(authSerialKey){
-    authKey = authSerialKey; //Hashing 1000 times the serial key.
-    for(var i=0; i < 1000; i++){
-        authKey = sha256(authKey);
-    }
-    delete authSerialKey;
-}
-
 
 app.server = server.createServer(app);
 var socket = require('./socket')(app.server);
+
+var auth2Way = require('./auth');
+    auth2Way = new auth2Way({ window: 2, timeStep: 30 });
+
+var authSerialKey = auth2Way.generateToken();
+
 
 app.get('/', function(request, response) {
     response.sendFile(path.resolve(__dirname + '/../www/index.html'));
@@ -29,30 +23,13 @@ app.get('/', function(request, response) {
 app.get('/check-auth/', function(request, response) {
 	var token = request.query.code;
 
-	//If we dont post a code
+	//If a token is not posted
 	if(!request.query.code){
 		response.send(JSON.stringify({match:false}));
 		return;
 	}
 
-	var time = Date.parse(new Date().toUTCString());
-		//time = time - (1000 * 60 * 60);//Simulate 1h difference
-        time = Math.floor(time / 1000);
-
-    var step = Math.floor(time / timeStep);
-    var match = false;
-
-    var limit = 2;
-    for(var i = 0; i < limit; i++){
-    	var codeForward = sha256(authKey + (step + i));
-    	var codeBackward = sha256(authKey + (step - i));
-
-    	if(String(codeForward).indexOf(token) == 0 || String(codeBackward).indexOf(token) == 0){
-    		match = true;
-    	}
-    }
-
-    response.send(JSON.stringify({match:match}));
+    response.send(JSON.stringify(auth2Way.verifyToken(token, authSerialKey)));
 });
 
 app.get('/sync-time/', function(request, response) {
@@ -63,10 +40,12 @@ app.get('/sync-time/', function(request, response) {
 });
 
 app.get('/send-serial/', function(request, response) {
-	saveSerial(String(request.query.code).toLowerCase());
 
-	console.log('KEY SAVED', authKey);
+    authSerialKey = auth2Way.generateToken(String(request.query.code).toLowerCase());
+
+	console.log('KEY SAVED', authSerialKey);
     response.send(JSON.stringify({serialSaved: true}));
+
 });
 
 app.use('/js', express.static(__dirname + '/../www/js'));
