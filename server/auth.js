@@ -32,6 +32,8 @@ function randomiseString(str){
 function auth(config){
 	this.config = config || {};
 	this.timeStep = 30 || config.timeStep;
+
+	this.id = Math.random()*100;
 }
 
 /**
@@ -85,6 +87,4 @@ auth.prototype.verifyToken = function(token, authKey, config){
     return (match) ? {match: true, delta: delta} : {match: false};
 }
 
-module.exports = function (config) {
-	return new auth();
-}
+exports.api = auth;

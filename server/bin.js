@@ -10,7 +10,7 @@ app.server = server.createServer(app);
 var socket = require('./socket')(app.server);
 
 var auth2Way = require('./auth');
-    auth2Way = new auth2Way({ window: 2, timeStep: 30 });
+    auth2Way = new auth2Way.api({ window: 2, timeStep: 30 });
 
 var authSerialKey = auth2Way.generateToken();
 
@@ -40,12 +40,10 @@ app.get('/sync-time/', function(request, response) {
 });
 
 app.get('/send-serial/', function(request, response) {
-
     authSerialKey = auth2Way.generateToken(String(request.query.code).toLowerCase());
 
 	console.log('KEY SAVED', authSerialKey);
     response.send(JSON.stringify({serialSaved: true}));
-
 });
 
 app.use('/js', express.static(__dirname + '/../www/js'));
@@ -54,4 +52,3 @@ app.use('/images', express.static(__dirname + '/../www/images'));
 app.server.listen(port, function () {
   console.log('Example app listening on port '+port);
 });
-
