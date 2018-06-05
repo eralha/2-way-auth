@@ -29,6 +29,7 @@ app.get('/check-auth/', function(request, response) {
 		return;
 	}
 
+	//authSerialKey can be stored in a data base associated to a user
     response.send(JSON.stringify(auth2Way.verifyToken(token, authSerialKey)));
 });
 
