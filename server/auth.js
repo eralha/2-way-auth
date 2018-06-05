@@ -42,9 +42,10 @@ function auth(config){
  * @param {String} random generated key or user inputed password
  */
 auth.prototype.generateToken = function(authSerialKey){
-	var authKey = authSerialKey || this.generateRandomSerial(); //Hashing 1000 times the serial key.
+    var authKey = authSerialKey || this.generateRandomSerial(); //Hashing 1000 times the serial key.
+    var keyMem = authKey;
     for(var i=0; i < 1000; i++){
-        authKey = sha256(authKey);
+        authKey = sha256(authKey + keyMem);
     }
 
     return authKey;

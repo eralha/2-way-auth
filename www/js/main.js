@@ -46,8 +46,9 @@ function saveSerial(){
     $('#serialDisplay').val('');
 
     authKey = authSerialKey; //Hashing 1000 times the serial key.
+    var keyMem = authKey;
     for(var i=0; i < 1000; i++){
-        authKey = sha256(authKey);
+        authKey = sha256(authKey + keyMem);
     }
 
     console.log('KEY SAVED', authKey);
@@ -60,6 +61,8 @@ function generateHash(){
 
         time = Math.floor(time / 1000);
     var step = Math.floor(time / timeStep);
+
+    console.log(timeStep, time, step)
 
     var code = sha256(authKey + step);
 
