@@ -66,8 +66,8 @@ auth.prototype.verifyToken = function(token, authKey, config){
 	config = config || {};
 
 	var time = Date.parse(new Date().toUTCString());
-	//time = time - (1000 * 60 * 60);//Simulate 1h difference
-    time = Math.floor(time / 1000);
+        //time = time - (1000 * 60 * 60);//Simulate 1h difference
+        time = Math.floor(time / 1000);
 
     var step = Math.floor(time / (config.timeStep || this.timeStep));
     var match = false;
